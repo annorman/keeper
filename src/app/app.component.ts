@@ -8,7 +8,7 @@ export class Store {
   name: string;
   money: number;
   item_slots: number;
-  inventory: StoreItem[];
+  inventory: StoreInventory[];
 }
 
 export class Item {
@@ -18,7 +18,7 @@ export class Item {
   price: number;
 }
 
-export class StoreItem {
+export class StoreInventory {
   item: Item;
   quantity: number;
   price_modifier: number;
@@ -29,7 +29,6 @@ const potion:   Item = { id: "potion", name: "Potion", description: "A simple po
 const hipotion: Item = { id: "hipotion", name: "Hi-Potion", description: "A potion for more serious wounds", price: 500 };
 const bsword:   Item = { id: "bsword", name: "Bronze Sword", description: "A simple sword useful for beginner adventurers", price: 1500 };
 const bhelm:    Item = { id: "bhelm", name: "Bronze Helm", description: "A simple helm to protect against weak attacks", price: 1000 };
-const all_items: Item[] = [potion, hipotion, bsword, bhelm];
 
 @Component({
   selector: 'app-root',
@@ -37,6 +36,9 @@ const all_items: Item[] = [potion, hipotion, bsword, bhelm];
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  state = "stock";
+  all_items: Item[] = [potion, hipotion, bsword, bhelm];
+
   store: Store = {
     id: "store",
     name: "Store of the Gods",
@@ -47,4 +49,42 @@ export class AppComponent {
       { item: bsword, quantity: 2, price_modifier: 2 }
     ]
   };
+
+  buyItem(item: Item): void {
+    let inventory: StoreInventory;
+
+    // TODO: how do we do array.select in ES6?
+    for (let inv of this.store.inventory) {
+      if (inv.item === item) {
+        inventory = inv;
+      }
+    }
+
+    if (!inventory) {
+      inventory = { item: item, quantity: 0, price_modifier: 1 };
+      this.store.inventory.push(inventory);
+    }
+
+    inventory.quantity++;
+
+    this.store.money -= item.price;
+  }
+
+  sellItem(inventory: StoreInventory): void {
+    for (let i of this.store.inventory) {
+      if (i === inventory) {
+        i.quantity--;
+        this.store.money += (i.item.price * i.price_modifier);
+
+        if (i.quantity === 0) {
+          let index = this.store.inventory.indexOf(i);
+          this.store.inventory.splice(index, 1);
+        }
+      }
+    }
+  }
+
+  setState(state: string): void {
+    this.state = state;
+  }
 }
