@@ -19,10 +19,17 @@ export class Item {
 }
 
 export class StoreItem {
-  item_id: string;
+  item: Item;
   quantity: number;
   price_modifier: number;
 }
+
+// This stuff will come from the API
+const potion:   Item = { id: "potion", name: "Potion", description: "A simple potion for healing minor wounds", price: 100 };
+const hipotion: Item = { id: "hipotion", name: "Hi-Potion", description: "A potion for more serious wounds", price: 500 };
+const bsword:   Item = { id: "bsword", name: "Bronze Sword", description: "A simple sword useful for beginner adventurers", price: 1500 };
+const bhelm:    Item = { id: "bhelm", name: "Bronze Helm", description: "A simple helm to protect against weak attacks", price: 1000 };
+const all_items: Item[] = [potion, hipotion, bsword, bhelm];
 
 @Component({
   selector: 'app-root',
@@ -30,18 +37,14 @@ export class StoreItem {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // Define some classes!
-  potion:   Item = { id: "potion", name: "Potion", description: "A simple potion for healing minor wounds", price: 100 };
-  hipotion: Item = { id: "hipotion", name: "Hi-Potion", description: "A potion for more serious wounds", price: 500 };
-  bsword:   Item = { id: "bsword", name: "Bronze Sword", description: "A simple sword useful for beginner adventurers", price: 1500 };
-  bhelm:    Item = { id: "bhelm", name: "Bronze Helm", description: "A simple helm to protect against weak attacks", price: 1000 };
-  all_items: Item[] = [this.potion, this.hipotion, this.bsword, this.bhelm];
-
   store: Store = {
     id: "store",
     name: "Store of the Gods",
     money: 1000,
     item_slots: 5,
-    inventory: [{ item_id: "potion", quantity: 5, price_modifier: 0 }]
+    inventory: [
+      { item: potion, quantity: 5, price_modifier: 1 },
+      { item: bsword, quantity: 2, price_modifier: 2 }
+    ]
   };
 }

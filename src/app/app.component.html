@@ -1,3 +1,6 @@
 <h1>{{store.name}}</h1>
-You have {{store.items.length}} items to sell!
-
+<h3>Items for sale:</h3>
+<li *ngFor="let i of store.inventory">
+  <strong>{{i.quantity}} x {{i.item.name}}</strong><br />
+  <small>{{i.item.description}}</small>
+</li>
