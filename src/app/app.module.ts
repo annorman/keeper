@@ -6,19 +6,23 @@ import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { StockDisplayComponent } from './stock-display/stock-display.component';
 import { ItemService } from "./item.service";
+import { MessagesComponent } from './messages/messages.component';
+import { MessageService } from './message.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
-    StockDisplayComponent
+    StockDisplayComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
   providers: [
-    ItemService
+    ItemService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
