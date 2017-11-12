@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Store, StoreInventory } from "../models/store";
 import { Item } from "../models/item";
-import { ITEMS } from "../data/mock-items";
+import { ItemService } from "../item.service";
 
 @Component({
   selector: 'app-game',
@@ -9,24 +10,27 @@ import { ITEMS } from "../data/mock-items";
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
-
   state = "stock";
-  all_items: Item[] = ITEMS;
+  all_items: Item[];
+  store: Store;
 
-  store: Store = {
-    id: "store",
-    name: "Store of the Gods",
-    money: 1000,
-    item_slots: 5,
-    inventory: [
-      { item: ITEMS[0], quantity: 5, price_modifier: 1 },
-      { item: ITEMS[1], quantity: 2, price_modifier: 2 }
-    ]
-  };
-
-  constructor() {}
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
+    this.itemService.getItems().subscribe((items) => {
+      this.all_items = items;
+
+      this.store = {
+        id: "store",
+        name: "Store of the Gods",
+        money: 1000,
+        item_slots: 5,
+        inventory: [
+          { item: this.all_items[0], quantity: 5, price_modifier: 1 },
+          { item: this.all_items[1], quantity: 2, price_modifier: 2 }
+        ]
+      };
+    });
   }
 
   buyItem(item: Item): void {

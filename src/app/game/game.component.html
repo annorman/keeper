@@ -2,7 +2,7 @@
 <h2 style="color:gold">{{store.money}} gold</h2>
 
 <div *ngIf="state === 'stock'">
-  <app-stock-display></app-stock-display>
+  <app-stock-display [items]="all_items"></app-stock-display>
 </div>
 
 <div *ngIf="state === 'sell'">

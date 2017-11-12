@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Item } from "../models/item";
 
 @Component({
   selector: 'app-stock-display',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stock-display.component.css']
 })
 export class StockDisplayComponent implements OnInit {
+  @Input() items: Item[];
 
   constructor() { }
 

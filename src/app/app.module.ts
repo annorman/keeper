@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { StockDisplayComponent } from './stock-display/stock-display.component';
+import { ItemService } from "./item.service";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { StockDisplayComponent } from './stock-display/stock-display.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    ItemService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
