@@ -1,0 +1,10 @@
+<h3>Purchase stock:</h3>
+<ul>
+  <li *ngFor="let item of all_items">
+    <strong>{{item.name}} ({{item.price}})</strong><br />
+    <small>{{item.description}}</small><br />
+    <button (click)="buyItem(item)">Purchase stock</button>
+  </li>
+</ul>
+<hr />
+<button (click)="setState('sell')">Sell some stock!!</button>
