@@ -1,0 +1,10 @@
+<h3>Items for sale:</h3>
+<ul>
+  <li *ngFor="let i of stateService.store.inventory">
+    <strong>{{i.quantity}} x {{i.item.name}} ({{i.item.price*i.price_modifier}})</strong><br />
+    <small>{{i.item.description}}</small><br />
+    <button (click)="sellItem(i)">Sell to Customer</button>
+  </li>
+</ul>
+<hr />
+<button (click)="stateService.setState('stock')">Buy some stock!!</button>

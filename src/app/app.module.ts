@@ -8,12 +8,15 @@ import { StockDisplayComponent } from './stock-display/stock-display.component';
 import { ItemService } from "./item.service";
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './message.service';
+import { StateService } from './state.service';
+import { SellDisplayComponent } from './sell-display/sell-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
     StockDisplayComponent,
+    SellDisplayComponent,
     MessagesComponent
   ],
   imports: [
@@ -22,7 +25,8 @@ import { MessageService } from './message.service';
   ],
   providers: [
     ItemService,
-    MessageService
+    MessageService,
+    StateService
   ],
   bootstrap: [AppComponent]
 })

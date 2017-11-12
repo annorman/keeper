@@ -1,19 +1,10 @@
-<h1>{{store.name}}</h1>
-<h2 style="color:gold">{{store.money}} gold</h2>
+<h1>{{stateService.store.name}}</h1>
+<h2 style="color:gold">{{stateService.store.money}} gold</h2>
 
-<div *ngIf="state === 'stock'">
+<div *ngIf="stateService.state === 'stock'">
   <app-stock-display [items]="all_items"></app-stock-display>
 </div>
 
-<div *ngIf="state === 'sell'">
-  <h3>Items for sale:</h3>
-  <ul>
-    <li *ngFor="let i of store.inventory">
-      <strong>{{i.quantity}} x {{i.item.name}} ({{i.item.price*i.price_modifier}})</strong><br />
-      <small>{{i.item.description}}</small><br />
-      <button (click)="sellItem(i)">Sell to Customer</button>
-    </li>
-  </ul>
-  <hr />
-  <button (click)="setState('stock')">Buy some stock!!</button>
+<div *ngIf="stateService.state === 'sell'">
+  <app-sell-display></app-sell-display>
 </div>

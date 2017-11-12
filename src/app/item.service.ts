@@ -16,5 +16,4 @@ export class ItemService {
     this.messageService.add("Loaded all items!");
     return of(ITEMS);
   }
-
 }
