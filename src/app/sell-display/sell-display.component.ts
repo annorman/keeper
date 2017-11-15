@@ -4,8 +4,18 @@ import { StoreInventory } from "../models/store";
 
 @Component({
   selector: 'app-sell-display',
-  templateUrl: './sell-display.component.html',
-  styleUrls: ['./sell-display.component.css']
+  template: `
+    <h3>Items for sale:</h3>
+    <ul>
+      <li *ngFor="let i of stateService.store.inventory">
+        <strong>{{i.quantity}} x {{i.item.name}} ({{i.item.sell}})</strong><br />
+        <small>{{i.item.description}}</small><br />
+        <button (click)="sellItem(i)">Sell to Customer</button>
+      </li>
+    </ul>
+    <hr />
+    <button (click)="stateService.setState('stock')">Buy some stock!!</button>
+  `
 })
 export class SellDisplayComponent implements OnInit {
 
@@ -18,7 +28,7 @@ export class SellDisplayComponent implements OnInit {
     for (let i of this.stateService.store.inventory) {
       if (i === inventory) {
         i.quantity--;
-        this.stateService.store.money += (i.item.price * i.price_modifier);
+        this.stateService.store.money += i.item.sell;
 
         if (i.quantity === 0) {
           let index = this.stateService.store.inventory.indexOf(i);

@@ -24,7 +24,7 @@ export class GameComponent implements OnInit {
       this.stateService.setStore({
         id: "store",
         name: "Store of the Gods",
-        money: 1000,
+        money: 100,
         item_slots: 5,
         inventory: [
           { item: this.all_items[0], quantity: 5, price_modifier: 1 },

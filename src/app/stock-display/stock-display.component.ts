@@ -5,8 +5,18 @@ import { StoreInventory } from "../models/store";
 
 @Component({
   selector: 'app-stock-display',
-  templateUrl: './stock-display.component.html',
-  styleUrls: ['./stock-display.component.css']
+  template: `
+    <h3>Purchase stock:</h3>
+    <ul>
+      <li *ngFor="let item of items">
+        <strong>{{item.name}} ({{item.buy}})</strong><br />
+        <small>{{item.description}}</small><br />
+        <button (click)="buyItem(item)">Purchase stock</button>
+      </li>
+    </ul>
+    <hr />
+    <button (click)="stateService.setState('sell')">Sell some stock!!</button>
+  `
 })
 export class StockDisplayComponent implements OnInit {
   @Input() items: Item[];
@@ -34,7 +44,7 @@ export class StockDisplayComponent implements OnInit {
 
     inventory.quantity++;
 
-    this.stateService.store.money -= item.price;
+    this.stateService.store.money -= item.buy;
   }
 
 }
