@@ -5,15 +5,12 @@ import { of } from 'rxjs/observable/of';
 import { Item } from "./models/item";
 import { ITEMS } from "./data/mock-items";
 
-import { MessageService } from './message.service';
-
 @Injectable()
 export class ItemService {
 
-  constructor(private messageService: MessageService) { }
+  constructor() { }
 
   getItems(): Observable<Item[]> {
-    this.messageService.add("Loaded all items!");
     return of(ITEMS);
   }
 }
