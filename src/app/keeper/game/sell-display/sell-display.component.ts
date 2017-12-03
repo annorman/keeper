@@ -1,10 +1,11 @@
+///<reference path="../../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs/observable/interval';
 
-import { StateService } from "../state.service";
-import { StoreInventory } from "../models/store";
-import { Customer } from "../models/customer";
-import { MessageService } from "../message.service";
+import { StateService } from "../../data/state.service";
+import { StoreInventory } from "../../models/store";
+import { Customer } from "../../models/customer";
+import { MessageService } from "../../../message.service";
 
 @Component({
   selector: 'app-sell-display',

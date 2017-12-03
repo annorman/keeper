@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Item } from "../models/item";
-import { StateService } from "../state.service";
-import { StoreInventory } from "../models/store";
+import { Item } from "../../models/item";
+import { StateService } from "../../data/state.service";
+import { StoreInventory } from "../../models/store";
 
 @Component({
   selector: 'app-stock-display',

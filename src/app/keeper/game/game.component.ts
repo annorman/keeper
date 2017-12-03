@@ -2,12 +2,23 @@ import { Component, OnInit } from '@angular/core';
 
 import { Store, StoreInventory } from "../models/store";
 import { Item } from "../models/item";
-import { ItemService } from "../item.service";
-import { StateService } from "../state.service";
+import { ItemService } from "../data/item.service";
+import { StateService } from "../data/state.service";
 
 @Component({
   selector: 'app-game',
-  templateUrl: './game.component.html',
+  template: `
+    <h1>{{stateService.store.name}}</h1>
+    <h2 style="color:gold">{{stateService.store.money}} gold</h2>
+
+    <div *ngIf="stateService.state === 'stock'">
+      <app-stock-display [items]="all_items"></app-stock-display>
+    </div>
+
+    <div *ngIf="stateService.state === 'sell'">
+      <app-sell-display></app-sell-display>
+    </div>
+  `,
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {

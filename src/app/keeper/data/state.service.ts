@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Store } from './models/store';
+import { Store } from '../models/store';
 
 @Injectable()
 export class StateService {
